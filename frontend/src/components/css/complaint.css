@@ -1,0 +1,153 @@
+.complaint-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #121212;
+}
+
+.complaint-form {
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.complaint-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #56C232;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group input[type="file"] {
+    display: none;
+}
+
+.form-group .file-upload label {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group .file-upload label:hover {
+    background-color: #0056b3;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+
+.form-group button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #56C232;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button[type="submit"]:hover {
+    background-color: #42A624;
+}
+
+.form-group button:active {
+    opacity: 0.7;
+}
+
+.images-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.images-container img {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    max-width: 100%;
+    height: auto;
+}
+
+.disclaimer-tag {
+    text-align: center;
+    color: #56C232;
+}
+
+hr {
+    border-color: #56C232;
+    margin-top: 200px;
+}
+
+.disclaimer-content {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .complaint-form {
+        padding: 15px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 14px;
+    }
+
+    .disclaimer-content {
+        font-size: 16px;
+    }
+}

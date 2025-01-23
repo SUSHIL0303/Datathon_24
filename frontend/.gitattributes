@@ -1,0 +1,5 @@
+Vehicles0514.csv filter=lfs diff=lfs merge=lfs -text
+frontend/src/pyserver/dataset.csv filter=lfs diff=lfs merge=lfs -text
+frontend/src/pyserver/Accidents0514.csv filter=lfs diff=lfs merge=lfs -text
+frontend/src/pyserver/whether.pkl filter=lfs diff=lfs merge=lfs -text
+frontend/src/pyserver/Vehicles0514.csv filter=lfs diff=lfs merge=lfs -text

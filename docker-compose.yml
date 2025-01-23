@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"  # Map host port 3000 to container port 3000
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3001:3001"  # Map host port 3001 to container port 3001
+    depends_on:
+      - pyserver
+
+  pyserver:
+    build:
+      context: ./pyserver
+    ports:
+      - "5000:5000"  # Map host port 5000 to container port 5000

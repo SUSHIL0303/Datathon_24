@@ -1,0 +1,121 @@
+.user-img {
+    width: 50%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.user-page {
+    background-color: #ccc;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    margin-top: 15px;
+}
+
+.user-content {
+    margin-left: 50px;
+    flex: 1;
+}
+
+.head2 {    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    align-items: center;
+    font-family: "Comme", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+} 
+
+.all-contents {
+    margin-top: 30px;
+}
+
+
+.img{
+    width: 300px;
+}
+.slider-items{
+    flex:  0 0 auto;
+    width: 100%;
+}
+
+.image-slider{
+    width: 400px;
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+}
+
+.all-imgs{
+    width: 400px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 top;
+}
+
+.btn-next,
+.btn-prev {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+    font-size: 24p;
+    color: black;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.btn-next{
+    right: 0;
+}
+
+.btn-prev{
+    left: 10px;
+}
+
+.name-result{
+    display: inline-block;
+    padding-left: 10px;
+    color: #222629;
+    font-weight: none;
+}
+
+.mobile-result{
+    display: inline-block;
+    padding-left: 10px;
+    color: #222629;
+    
+}
+
+.complaint-result{
+    display: inline-block;
+    padding-left: 10px;
+    color: #222629;
+}
+
+.name{
+    color: #61892F;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mobile{
+    color: #69812F;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.complaint{
+    color: #61892F;
+    font-weight: bold;
+    font-size: 20px;
+}
+

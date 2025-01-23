@@ -1,0 +1,14 @@
+{
+  "name": "your-project",
+  "version": "1.0.0",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0"
+  }
+}

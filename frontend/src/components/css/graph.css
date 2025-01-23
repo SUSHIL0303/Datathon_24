@@ -1,0 +1,69 @@
+.csv-head{
+    color: #86C232;
+    text-align: center;
+}
+
+.csv-filename{
+    color: white;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.file-inputbox{
+    display: inline-block;
+    color: white;
+    margin-left: 0;
+    
+}
+
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    border-width: 3px;
+  
+
+    
+
+}
+
+.plot-btn{
+    border-color: #86C232;
+    background-color: #86C232;
+    color: white;
+    border-width: 3px;
+    border-style: solid;
+    font-weight: bold;
+    font-size: 20px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.plot-btn:hover{
+    opacity: 0.7;
+}
+
+.graph-form{
+    width: 700px;
+  
+
+}
+
+.graph-img{
+    margin-left: 90px;
+}
+
+.cancel-btn{
+    color: white;
+    background-color: red;
+    margin-left: 10px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.cancel-btn:hover{
+    opacity: 0.7;
+}

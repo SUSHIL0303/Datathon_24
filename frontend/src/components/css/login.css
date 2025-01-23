@@ -1,0 +1,156 @@
+.login-wrapper{
+    width: 500px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 60px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    outline: none;
+    backdrop-filter: blur(20px);
+    
+  
+}
+
+.login-wrapper a{
+    text-decoration: none;
+    color: black;
+}
+
+.login-wrapper h2{
+    color: #86C232;
+    margin-bottom: 15px;
+}
+
+.login-body{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+}
+
+
+input{
+    border-radius: 7px;
+    height: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding-left: 20px;
+    outline: none;
+}
+
+.acc-exist{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: white;
+    
+}
+
+.signup-btn{
+    font-size: 20px;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #86C232;
+    border-width: 5px;
+}
+
+.signup-btn:hover{
+    font-weight: bold;
+    color: black;
+    background-color: #86C232;
+}
+
+.login-btn{
+    font-size: 20px;
+    width: 100%;
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: #86C232;
+    border-width: 5px;
+}
+
+.login-btn:hover{
+    font-weight: bold;
+    color: black;
+    background-color: #86C232;
+}
+
+.sign-up link{
+    text-decoration: none;
+}
+
+.login-btn:active , .sign-up:after{
+    opacity: 0.75;
+}
+
+.box1{
+    width: 500px;
+    height: 500px;
+    background-color: #86C232;
+    border-radius: 400px;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    left: -100px;
+    opacity: 0.2;
+    filter: blur(100px);
+}
+
+
+
+.box2{
+    width: 600px;
+    height: 600px;
+    background-color: #86C232;
+    border-radius: 400px;
+    position: absolute;
+    z-index: 1;
+    bottom: 1px;
+    right: 1px;
+    opacity: 0.15   ;
+    filter: blur(100px);
+}
+
+.box3{
+    width: 250px;
+    height: 250px;
+    background-color: #86C232;
+    border-radius: 400px;
+    position: absolute;
+    z-index: 1;
+    right: 560px;
+    top: 100px;
+    opacity: 0.2;
+    filter: blur(100px);
+}
+
+.box4{
+    width: 300px;
+    height: 300px;
+    background-color: #86C232;
+    border-radius: 400px;
+    position: absolute;
+    z-index: 1;
+    bottom: 200px;
+    left: 600px;
+    opacity: 0.1;
+    filter: blur(100px);
+}
+
+.box5{
+    width: 300px;
+    height: 300px;
+    background-color: #86C232;
+    border-radius: 400px;
+    position: absolute;
+    z-index: 1;
+    bottom: 70px;
+    left: 100px;
+    opacity: 0.11;
+    filter: blur(100px);
+
+}

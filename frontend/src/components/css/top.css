@@ -1,0 +1,17 @@
+.city-name{
+    color: white;
+    font-size: 50px;
+}
+
+.h2-heading{
+    color: #86C232;
+    font-size: 80px;
+}
+
+.accident-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}

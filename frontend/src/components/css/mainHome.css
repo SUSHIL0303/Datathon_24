@@ -1,0 +1,185 @@
+/* General Styling */
+body {
+    background-color: black;
+    padding: 20px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Welcome Section */
+.welcome-container {
+    margin-top: 100px;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-head {
+    font-size: 70px;
+    color: #56C232;
+}
+
+.animate-container {
+    display: inline-block;
+    text-align: center;
+}
+
+.head-content {
+    color: #474b4f;
+    margin-top: 5px;
+    font-size: 40px;
+    font-weight: bold;
+    border-right: 4px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 2s steps(44), cursor 0.5s step-end infinite alternate;
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.mission {
+    color: white;
+    font-size: 30px;
+    margin: 20px auto;
+    line-height: 1.8;
+    text-align: center;
+    animation: fadeIn 3s ease-in-out;
+    width: 80%;
+}
+
+/* Buttons */
+.welcome-container button {
+    margin-top: 30px;
+    margin-right: 10px;
+    height: 60px;
+    width: 140px;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.user-btn {
+    background-color: #56C232;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.admin-btn {
+    border: 3px solid #56C232;
+    background-color: black;
+    color: #56C232;
+    font-weight: bold;
+}
+
+.user-btn:hover,
+.admin-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    opacity: 0.9;
+}
+
+.user-btn:active,
+.admin-btn:active {
+    transform: scale(0.95);
+    opacity: 0.7;
+}
+
+.user-link,
+.admin-link {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+/* About Us Section */
+.aboutus-wrapper {
+    margin-top: 100px;
+    color: #56C232;
+    text-align: center;
+    animation: fadeIn 3.5s ease-in-out;
+}
+
+.aboutus-content {
+    color: grey;
+    line-height: 1.8;
+    font-size: 18px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .welcome-head {
+        font-size: 50px;
+    }
+
+    .head-content {
+        font-size: 28px;
+    }
+
+    .mission {
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .welcome-container button {
+        height: 50px;
+        width: 120px;
+        font-size: 16px;
+    }
+
+    .aboutus-content {
+        font-size: 16px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-head {
+        font-size: 40px;
+    }
+
+    .head-content {
+        font-size: 20px;
+    }
+
+    .mission {
+        font-size: 18px;
+        width: 95%;
+    }
+
+    .welcome-container button {
+        height: 45px;
+        width: 100px;
+        font-size: 14px;
+    }
+
+    .aboutus-content {
+        font-size: 14px;
+        width: 95%;
+    }
+}

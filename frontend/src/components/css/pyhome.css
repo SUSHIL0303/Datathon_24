@@ -1,0 +1,109 @@
+.pyHome-body{
+    background-color: #1A1A1D;
+}
+.container{
+    background-color: #474B4F;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form input{
+    margin-bottom: 10px;
+    height: 45px;
+    padding-left: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+.form button{
+    height: 45px;
+    border-radius: 40px;
+
+}
+
+.form button:hover{
+    height: 45px;
+    border-radius: 40px;
+    border-width: 5px;
+    border-color: #86C232;
+    border-style: solid;
+}
+
+.nav-info{
+    text-decoration: none;
+    color: #86C232;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.nav-wrapper{
+    display: flex;
+}
+
+.nav-wrapper button{
+    font-weight: bold;
+    transition: 0.15s;
+}
+
+.nav-wrapper button:active{
+    opacity: 0.7;
+    
+}
+
+.nav-wrapper button:hover{
+    color: white;
+    font-weight: bold;
+    background-color: #86C232;
+}
+
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.logo{
+    color: #86C232;
+    font-weight: bold;
+}
+
+.header-wrapper button{
+    font-size: 20px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 30px;
+    color: #86C232;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.result{
+    color: #86C232;
+    font-weight: bold;
+    margin: 2px;
+    margin-top: 2px;
+    font-size: 25px;
+    display: inline-block; 
+    
+}
+
+.result-tag{
+    margin-top: 10px;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+hr{
+    border-width: 5px;
+    margin-top: 10px;
+}
+
+.form h1{
+    color: #222629;
+}
