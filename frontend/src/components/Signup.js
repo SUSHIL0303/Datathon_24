@@ -9,15 +9,17 @@ export default function Signup(){
     const [password,setPassword] = useState()
     const navigate = useNavigate()
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/register',{name,email,password})
-        .then(res=>{
-            console.log(res)
-            navigate("/login")
-        })
-        .catch(err=>console.log(err))
-    }
+        console.log({ name, email, password }); 
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, { name, email, password })
+            .then(res => {
+                console.log(res);
+                navigate("/login");
+            })
+            .catch(err => console.log(err));
+    };
+    
 
     return(
         <body className="register-body">

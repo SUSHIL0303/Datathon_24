@@ -4,7 +4,6 @@ import axios from "axios";
 import './css/complaint.css'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
 export default function Complaint(){ 
 
 const [name,setName] = useState('')
@@ -16,7 +15,7 @@ const [images, setImages] = useState([]);
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/submitcomplaint', {name, phonenumber, address, distname, review, images })
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/submitcomplaint`, {name, phonenumber, address, distname, review, images })
     .then(res => {
     console.log(res);
     setName('')
@@ -29,23 +28,21 @@ const handleSubmit = (e) => {
     })
     .catch(err => {
     console.log(err);
-    // Handle errors, such as displaying an error message to the user
     console.log("An error occurred while submitting the complaint");
     });
         
 };
     
-// Handler for file input
 function convertToBase64(e) {
     const files = e.target.files;
-    const base64Images = []; // Array to store base64 strings
+    const base64Images = []; 
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
         reader.onload = () => {
-                const base64String = reader.result; // Base64 encoded string
-                base64Images.push(base64String); // Add base64 string to the array
-                setImages(base64Images); // Update state with array of base64 strings
+                const base64String = reader.result; 
+                base64Images.push(base64String); 
+                setImages(base64Images); 
         };
     reader.readAsDataURL(file);
     }
@@ -94,7 +91,7 @@ return(
     <footer className="disclaimer footer">
         <hr></hr>
         <h2 className="disclaimer-tag">Disclaimer</h2>
-        <p className="disclaimer-content">RoadSafe Karnataka is a project developed for the Karnataka Police for the purpose of road safety enhancement. All data provided on this platform is for informational purposes only and should not be considered as professional advice.</p>
+        <p className="disclaimer-content">This is a project developed for the  Police department for the purpose of road safety enhancement. All data provided on this platform is for informational purposes only and should not be considered as professional advice.</p>
     </footer>
     </div>
     

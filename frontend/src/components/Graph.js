@@ -39,7 +39,7 @@ const Graph = () => {
       });
 
       const plotFilename = response.data.plot_filename;
-      console.log('Plot filename:', plotFilename); // Debug log
+      console.log('Plot filename:', plotFilename); 
       setPlotUrl(`http://localhost:5001/uploads/${plotFilename}`);
       setErrorMessage('');
     } catch (error) {
