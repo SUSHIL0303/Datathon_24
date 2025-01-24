@@ -12,9 +12,7 @@ const Home = () => {
                 <div className='animate-container'>
                     <p className='head-content'>Empowering Safer Roads through Data Analysis..</p>
                 </div>               
-                <p className='mission'>Join us in our mission to make roads safer for everyone. Whether you're a concerned citizen, a policymaker, or a member of law enforcement, together, we can create a significant impact. By leveraging data-driven insights, we aim to identify risks, improve road safety measures, and ensure a safer journey for all.
-
-</p>
+                <p className='mission'>Join us in our mission to make roads safer for everyone. Whether you're a concerned citizen, a policymaker, or a member of law enforcement, together, we can create a significant impact. By leveraging data-driven insights, we aim to identify risks, improve road safety measures, and ensure a safer journey for all.</p>
                 <button className='user-btn'><a className='user-link' href='/submitcomplaint'>USER</a></button>
                 <button className='admin-btn'><a className='admin-link' href='/login'>ADMIN</a></button> 
             </main>
@@ -22,7 +20,7 @@ const Home = () => {
                 <hr></hr>
                 <div>
                     <h3 className='aboutus'>About US</h3>
-                    <p className='aboutus-content'>RoadSafe Karnataka is an initiative by the Karnataka Police aimed at leveraging data analytics to predict and prevent road accidents across the state. Our platform provides insights into various road types and identifies potential risk factors to enhance road safety measures.</p>
+                    <p className='aboutus-content'>This is an initiative aimed at leveraging data analytics to predict and prevent road accidents across the state. Our platform provides insights into various road types and identifies potential risk factors to enhance road safety measures.</p>
                 </div> 
             </footer>
             

@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const authoritymodel = require('./models/Authority')
 const complaintmodel = require('./models/Complaint_model')
 const app = express()
+require('dotenv').config({path: '../.env'});
 
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
@@ -12,30 +13,53 @@ app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb+srv://tamilarasand:uzMo3Zc7s0nlfMYC@authority.bai3y9l.mongodb.net/?retryWrites=true&w=majority&appName=authority")
-
-app.post("/api/login", (req, res) => {
-    const { email, password } = req.body;
-    authoritymodel.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                if (user.password === password) {
-                    res.json('Success')
+mongoose.connect(process.env.REACT_APP_ATLAS_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+    .then(() => {
+      console.log("MongoDB connected successfully!");
+    })
+    .catch(err => {
+      console.error("MongoDB connection error:", err);
+    });
+  
+app.post("/login", (req, res) => {
+        const { email, password } = req.body;
+        authoritymodel.findOne({ email: email })
+            .then(user => {
+                if (user) {
+                    if (user.password === password) {
+                        res.json('Success');
+                    } else {
+                        res.json('The email or password is incorrect');
+                    }
                 } else {
-                    res.json('The email or password is incorrect')
+                    res.json('no record found');
                 }
-            } else {
-                res.json('no record found')
-            }
-        })
-})
-app.post('/api/register', (req, res) => {
-    authoritymodel.create(req.body)
-        .then(authorities => res.json(authorities))
-        .catch(err => res.json(err))
-})
+            })
+            .catch(err => {
+                console.error('Error during login:', err);
+                res.status(500).json('Internal server error');
+            });
+    });
+    
+app.post('/register', (req, res) => {
+    console.log("Received request body:", req.body);
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "All fields are required!" });
+    }
+    authoritymodel.create({ name, email, password })
+        .then(authorities => res.json({ success: true, authorities }))
+        .catch(err => {
+            console.error("Error creating user:", err);
+            res.status(500).json({ error: "Internal server error" });
+        });
+});
 
-app.post('/api/submitcomplaint', (req, res) => {
+
+app.post('/submitcomplaint', (req, res) => {
     const { name, phonenumber, address, distName, review, images } = req.body;
     try {
         complaintmodel.create(req.body)
@@ -49,7 +73,7 @@ app.post('/api/submitcomplaint', (req, res) => {
     }
 });
 
-app.get('/api/complaints', (req, res) => {
+app.get('/complaints', (req, res) => {
     complaintmodel.find({})
         .then(complaints => {
             res.json(complaints);

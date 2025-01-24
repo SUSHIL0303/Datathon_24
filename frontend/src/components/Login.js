@@ -10,7 +10,7 @@ export default function Login(){
     const navigate = useNavigate()
     const handleSubmit = (e)=>{
         e.preventDefault();
-        axios.post('http://localhost:3001/login',{email,password})
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`,{email,password})
         .then(res=>{
             console.log(res)
             if (res.data === "Success") {
@@ -20,7 +20,6 @@ export default function Login(){
             } else if (res.data === "The email or password is incorrect") {
                 alert("Enter Valid Credentials");
             } else {
-                // Handle other errors here
                 console.error("Unexpected response:", res);
             }
         })

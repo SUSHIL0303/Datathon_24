@@ -12,8 +12,8 @@ const ShowComplaints = () => {
 
  	const fetchComplaints = async () => {
 		try {
-			const response = await axios.get('http://localhost:3001/complaints');
-			setComplaints(response.data.map(complaint => ({...complaint,currentImageIndex: 0 // Initialize current image index for each complaint
+			const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/complaints`);
+			setComplaints(response.data.map(complaint => ({...complaint,currentImageIndex: 0
 		})));
 		} catch (error) {
 			console.error('Error fetching complaints:', error);
