@@ -174,7 +174,7 @@ export default function PyHome() {
                 </form>
                 <hr></hr>
             
-                {/* Weather Prediction Form */}
+                {/* Weather Prediction Form
                 <form onSubmit={handleSubmitWeather} className="form">
                     <h1>Weather Prediction</h1>
                     <input type="text" placeholder="Longitude" name="longitude" required />
@@ -184,8 +184,8 @@ export default function PyHome() {
                     <button type="submit">Predict</button>
                     <p className="result-tag">Weather: <p className="result">{predictionText2}</p></p>
                     <p className="result-tag">Improvement: <p className="result">{predictionText21}</p></p>
-                </form>
-                <hr></hr>
+                </form> */}
+                {/* <hr></hr> */}
         
                 {/* Light Prediction Form */}
                 <form onSubmit={handleSubmitLight} className="form">

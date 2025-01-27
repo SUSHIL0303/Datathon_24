@@ -32,7 +32,7 @@ const Graph = () => {
       formData.append('attribute1', attribute1);
       formData.append('attribute2', attribute2);
 
-      const response = await axios.post('http://localhost:5001/plot', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_PYSERVER_URL}/plot`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -40,7 +40,7 @@ const Graph = () => {
 
       const plotFilename = response.data.plot_filename;
       console.log('Plot filename:', plotFilename); 
-      setPlotUrl(`http://localhost:5001/uploads/${plotFilename}`);
+      setPlotUrl(`${process.env.REACT_APP_PYSERVER_URL}/uploads/${plotFilename}`);
       setErrorMessage('');
     } catch (error) {
       console.error('Error:', error);
