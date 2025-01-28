@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const authoritymodel = require('./models/Authority')
 const complaintmodel = require('./models/Complaint_model')
 const app = express()
-require('dotenv').config({path: '../.env'});
+require('dotenv').config();
 
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));

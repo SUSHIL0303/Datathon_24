@@ -1,14 +1,12 @@
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
 import pandas as pd
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import numpy as np
 import pickle
 from collections import defaultdict
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS
@@ -49,6 +47,10 @@ def plot_chart():
         if attribute2 not in data.columns:
             return f"Attribute '{attribute2}' not found in the dataset", 400
 
+        # Check for too many unique values
+        if data[attribute1].nunique() > 50:
+            return f"Attribute '{attribute1}' has too many unique values to plot", 400
+
         # Use seaborn's countplot for counting occurrences of categories
         plt.figure(figsize=(18, 10))
         sns.countplot(data=data, x=attribute1, hue=attribute2)
@@ -59,9 +61,10 @@ def plot_chart():
         plt.tight_layout()  # Adjust layout to prevent clipping of labels
         plt.legend(title=attribute2)
         
-        # Save plot as image
-        image_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'plot.png')
-        save_plot(image_filename)
+        # Save plot as image with unique filename
+        import uuid
+        image_filename = os.path.join(app.config['UPLOAD_FOLDER'], f'plot_{uuid.uuid4().hex}.png')
+        plt.savefig(image_filename)
 
         # Debug: Confirm file saving
         if os.path.exists(image_filename):
@@ -70,24 +73,27 @@ def plot_chart():
         # Remove the temporary CSV file
         os.remove(csv_filename)
 
-        return jsonify({'plot_filename': 'plot.png'})
+        return jsonify({'plot_filename': os.path.basename(image_filename)})
     except Exception as e:
+        logging.error(f"Error occurred: {e}")
         return str(e), 500
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+
 # Data preparation for top-unit-names
 city_names = [
-    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'New York', 'Los Angeles', 
-    'New York', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio', 'San Diego', 
-    'Dallas', 'San Jose', 'Austin', 'Jacksonville', 'Fort Worth', 'Columbus', 'San Francisco', 
-    'Charlotte', 'Indianapolis', 'Seattle', 'Denver', 'Washington', 'Houston', 'Phoenix', 
-    'Philadelphia', 'San Antonio', 'San Diego', 'Dallas', 'San Jose', 'Austin', 'Jacksonville', 
-    'Fort Worth', 'Columbus', 'San Francisco', 'Charlotte', 'Indianapolis', 'Seattle', 'Denver', 
-    'Washington', 'Houston', 'Phoenix', 'New York', 'Los Angeles', 'Chicago'
+    'Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli', 'Salem', 'Chennai', 'Coimbatore', 
+    'Chennai', 'Madurai', 'Tiruchirappalli', 'Salem', 'Tirunelveli', 'Erode', 'Vellore', 
+    'Tiruppur', 'Thoothukudi', 'Dindigul', 'Nagercoil', 'Karur', 'Cuddalore', 'Kanchipuram', 
+    'Thanjavur', 'Udhagamandalam', 'Hosur', 'Dharmapuri', 'Sivakasi', 'Tiruchirappalli', 'Salem', 
+    'Tirunelveli', 'Erode', 'Vellore', 'Tiruppur', 'Thoothukudi', 'Dindigul', 'Nagercoil', 
+    'Karur', 'Cuddalore', 'Kanchipuram', 'Thanjavur', 'Udhagamandalam', 'Hosur', 'Dharmapuri', 
+    'Sivakasi', 'Tiruchirappalli', 'Salem', 'Chennai', 'Coimbatore', 'Madurai'
 ]
+
 
 # Create a DataFrame to simulate the 'UNITNAME' column
 data = pd.DataFrame({'UNITNAME': city_names})
@@ -158,13 +164,14 @@ def predict_road_surface():
         }
 
         improvement_predictions = {
-            "Excellent": "No immediate improvement needed. Regular maintenance recommended.",
-            "Very Good": "Minimal improvements needed. Focus on preventative maintenance.",
-            "Good": "Some improvements needed to maintain quality standards.",
-            "Fair": "Significant improvements needed to enhance road quality.",
-            "Poor": "Immediate action required to address road deterioration.",
-            "Unknown or Not Applicable": "Road condition information not available."
+        "Excellent": "No immediate improvement needed. Continue routine maintenance such as debris clearing and minor repairs.",
+        "Very Good": "Minor improvements like filling small cracks or sealing surfaces to prevent future damage.",
+        "Good": "Repair moderate cracks and potholes, ensure proper drainage, and reseal surface if necessary.",
+        "Fair": "Patch potholes, address drainage issues, resurface sections with wear, and ensure road markings are visible.",
+        "Poor": "Reconstruction of damaged sections, major pothole repairs, drainage system overhaul, and resurfacing required.",
+        "Unknown or Not Applicable": "Inspect the road to gather condition data and identify specific improvement needs."
         }
+
 
         predicted_value = prediction[0]
         if predicted_value in road_conditions:
@@ -195,17 +202,18 @@ def predict_road_surface():
         }
 
         improvement_predictions = {
-            "Clear sky": "No specific infrastructure improvements needed.",
-            "Partly cloudy": "Ensure proper drainage systems to handle potential rain.",
-            "Cloudy": "Check and maintain road signage for visibility.",
-            "Overcast": "Inspect and repair any weak structures that may be affected by wind.",
-            "Fog or mist": "Install fog lights and improve road markings for visibility.",
-            "Freezing fog": "Implement de-icing measures on roads and bridges.",
-            "Light rain shower": "Improve road drainage and ensure proper friction on road surfaces.",
-            "Moderate or heavy rain shower": "Upgrade drainage systems and reinforce flood-prone areas.",
-            "Torrential rain shower": "Invest in flood prevention infrastructure and evacuation plans.",
-            "Unjudgeable": "Monitor weather closely and respond accordingly."
-        }
+        "Clear sky": "No specific infrastructure improvements needed. Continue routine road maintenance and inspections.",
+        "Partly cloudy": "Ensure drainage systems are clear of debris to handle potential rainfall.",
+        "Cloudy": "Check road signage and lighting to ensure they remain visible in low-light conditions.",
+        "Overcast": "Inspect and reinforce weak structures like bridges and poles to withstand strong winds.",
+        "Fog or mist": "Install reflective road markers, fog lights, and warning signs to improve visibility for drivers.",
+        "Freezing fog": "Apply de-icing chemicals on roads and bridges, and ensure anti-slip treatments are in place.",
+        "Light rain shower": "Enhance drainage systems to prevent water pooling and maintain road surface friction.",
+        "Moderate or heavy rain shower": "Upgrade drainage capacity, stabilize slopes, and reinforce areas prone to erosion.",
+        "Torrential rain shower": "Build flood barriers, improve stormwater management systems, and develop emergency response plans.",
+        "Unjudgeable": "Conduct real-time monitoring and be prepared with contingency measures for various weather scenarios."
+}
+
         predicted_value = prediction[0]
         if predicted_value in weather:
             predicted = weather[predicted_value]
@@ -232,12 +240,13 @@ def predict_light_conditions():
         }
 
         improvement_predictions = {
-            1: "Install additional street lights for better visibility during daylight hours.",
-            4: "Ensure all street lights are functioning properly during daylight hours.",
-            7: "Maintain street lights to ensure they remain lit during darkness, improving visibility.",
-            5: "Repair or replace unlit street lights to improve visibility during darkness.",
-            6: "Install street lighting infrastructure to illuminate areas currently lacking lighting during darkness."
-        }
+        1: "Install additional street lights to enhance visibility and safety during daylight hours.",
+        4: "Inspect and ensure all street lights are operational to improve visibility during daylight hours.",
+        7: "Perform regular maintenance of street lights to ensure consistent illumination during darkness, enhancing visibility.",
+        5: "Repair or replace malfunctioning street lights to restore visibility during darkness.",
+        6: "Install new street lighting in areas currently lacking illumination to improve safety and visibility during darkness."
+}
+
 
         predict = prediction[0]
         if predict in condition:
@@ -265,11 +274,12 @@ def predict_pedestrian():
         else:
             value = "Unjudgeable"
         improvement_predictions = {
-            0: "Upgrade infrastructure for better control",
-            1: "Implement human intervention systems",
-            2: "Invest in automated control systems",
-            3: "Assess and improve infrastructure"
-        }
+    0: "Upgrade infrastructure with advanced monitoring systems and improved traffic control mechanisms.",
+    1: "Implement human intervention systems such as manual overrides and training programs for operators.",
+    2: "Invest in automated control systems like AI-driven monitoring, automated signaling, and fail-safe mechanisms.",
+    3: "Conduct a thorough assessment of existing infrastructure and address deficiencies to enhance overall efficiency."
+}
+
         if code in improvement_predictions:
             improve = improvement_predictions[code]
         return jsonify(prediction_text4=value, prediction_text41=improve)
@@ -291,11 +301,13 @@ def predict_severity():
         }
 
         improvement_predictions = {
-            "Minor": "Routine maintenance and repairs.",
-            "Moderate": "Upgrades to infrastructure components to prevent potential issues.",
-            "Serious": "Major overhaul or replacement of infrastructure components.",
-            "Unjudgeable": "Further assessment needed to determine appropriate action."
-        }
+    "Minor": "Perform routine maintenance, such as sealing cracks, clearing debris, and minor repairs to ensure continued functionality.",
+    "Moderate": "Upgrade infrastructure components like drainage systems, road surfaces, or lighting to address potential issues and prevent escalation.",
+    "Serious": "Undertake a major overhaul or replace critical infrastructure components, such as bridges, road sections, or power systems, to ensure safety and reliability.",
+    "Unjudgeable": "Conduct a detailed inspection and assessment to identify issues and determine the appropriate course of action."
+}
+
+
 
         predict = prediction[0]
         if predict in severity:

@@ -8,10 +8,10 @@ import ShowComplaints from './components/ShowComplaint';
 import {ToastContainer} from 'react-toastify'
 import Top from "./components/Top";
 import PyHome from "./components/PyHome";
-import Map from "./components/Map";
 import Graph from "./components/Graph";
 import DataAnalysis from "./components/dataAnalysis";
 import Images from "./components/images";
+import TrafficMap from "./components/Map";
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/home' element={<PyHome/>}/>
           <Route path='/submitcomplaint' element={<Complaint/>}/>
-          <Route path='map' element={<Map/>}/>
+          <Route path='map' element={<TrafficMap/>}/>
           <Route path='/graph' element={<Graph/>}/>
           <Route path='/data' element={<DataAnalysis />}/>
           <Route path='/images' element={<Images />}/>
